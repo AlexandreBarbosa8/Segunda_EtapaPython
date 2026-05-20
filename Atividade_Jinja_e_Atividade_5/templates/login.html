@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login Escolar</h2>
+        
+        {# Bloco Jinja para exibir mensagens de erro do backend #}
+        {% if erro %}
+            <div class="error-message">
+                {{ erro }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="input-group">
+                <label for="usuario">Nome:</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Digite seu nome" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="senha">Senha (Matrícula):</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua matrícula" required>
+            </div>
+            
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
