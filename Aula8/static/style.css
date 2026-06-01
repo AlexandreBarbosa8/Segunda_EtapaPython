@@ -1,0 +1,8 @@
+.contador-alunos {
+    background-color: #f8fafc;
+    padding: 8px 12px;
+    border-left: 4px solid #2563eb;
+    margin-bottom: 16px;
+    display: inline-block;
+    border-radius: 0 6px 6px 0;
+}
