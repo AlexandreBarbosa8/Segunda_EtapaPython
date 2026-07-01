@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema - Nova Sessão</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding: 40px; 
+            background-color: #1a1a1a; 
+            color: #fff; 
+        }
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: #262626;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        h1 {
+            margin-top: 0;
+            color: #ffcc00;
+            font-size: 24px;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 10px;
+        }
+        .form-grupo { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #ccc;
+        }
+        select, input { 
+            padding: 10px; 
+            width: 100%; 
+            box-sizing: border-box;
+            border: 1px solid #444; 
+            border-radius: 4px; 
+            background-color: #333;
+            color: #fff;
+            font-size: 14px;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #ffcc00;
+        }
+        button { 
+            background-color: #ffcc00; 
+            color: #1a1a1a; 
+            padding: 12px 15px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            width: 100%;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #e6b800;
+        }
+        .voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #aaa;
+            text-decoration: none;
+        }
+        .voltar:hover {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Nova Sessão</h1>
+
+        <form method="POST" action="{{ url_for('cinema.cadastrar_sessao') }}">
+            <div class="form-grupo">
+                <label for="filme_id">Filme</label>
+                <select id="filme_id" name="filme_id" required>
+                    <option value="">Selecione o filme...</option>
+                    {% for filme in filmes %}
+                        <option value="{{ filme.id }}">{{ filme.titulo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-grupo">
+                <label for="sala_id">Sala</label>
+                <select id="sala_id" name="sala_id" required>
+                    <option value="">Selecione a sala...</option>
+                    {% for sala in salas %}
+                        <option value="{{ sala.id }}">Sala {{ sala.numero }} (Capacidade: {{ sala.capacidade }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-grupo">
+                <label for="data_hora">Data e hora</label>
+                <input type="datetime-local" id="data_hora" name="data_hora" required>
+            </div>
+            
+            <div class="form-grupo">
+                <label for="preco">Preço do ingresso (R$)</label>
+                <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00" required>
+            </div>
+            
+            <button type="submit">Salvar Sessão</button>
+        </form>
+
+        <a href="{{ url_for('cinema.index') }}" class="voltar">← Voltar</a>
+    </div>
+
+</body>
+</html>
